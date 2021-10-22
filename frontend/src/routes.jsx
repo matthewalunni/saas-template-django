@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import LogOut from './pages/LogOut';
 import Checkout from './pages/Checkout';
 import Pricing from './pages/Pricing';
+import Hello from './pages/Hello';
 
 class Routes extends Component {
     render() {
@@ -21,6 +22,7 @@ class Routes extends Component {
                     <Route path="/login" component={LogIn} />
                     <Route path="/logout" component={LogOut} />
                     <Route path="/register" component={Register} />
+                    <Route path="/hello" component={Hello} />
                     <Route render={() => <h1>Page not found</h1>} />
                 </Switch>
             </BrowserRouter>
