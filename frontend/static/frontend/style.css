@@ -1,0 +1,38 @@
+.center {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.padded {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+.margined {
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
+}
+
+
+h1 {
+    text-align: center;
+    font-weight: 800;
+    font-size: 3.75rem;
+    line-height: 1;
+}
+
+
+.w-100 {
+    width: 100%;
+}
+
+.vertical-margin {
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+}
