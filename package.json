@@ -20,5 +20,13 @@
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewalunni/saas-template-django.git"
+  },
+  "bugs": {
+    "url": "https://github.com/matthewalunni/saas-template-django/issues"
+  },
+  "homepage": "https://github.com/matthewalunni/saas-template-django#readme"
 }
