@@ -45,10 +45,14 @@ class NavigationBar extends Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="mr-auto" navbar>
                             <NavItem>
-                                <Link className="nav-link" to="/Pricing">Pricing</Link>
+                                <Link className="nav-link" to="/pricing">Pricing</Link>
                             </NavItem>
                             <NavItem>
-                                <Link className="nav-link" to="/Account">Account</Link>
+                                <Link className="nav-link" to="/account">Account</Link>
+                            </NavItem>
+
+                            <NavItem>
+                                <Link className="nav-link" to="/hello">hello</Link>
                             </NavItem>
 
                         </Nav>

@@ -8,6 +8,8 @@ import {
 } from "reactstrap";
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
+import { Link } from 'react-router-dom';
+import API from '../axiosApi';
 
 
 var style = {
@@ -20,39 +22,31 @@ class SignIn extends Component {
     super(props);
     this.login = this.login.bind(this);
     this.inputChange = this.inputChange.bind(this);
-    this.responseGoogle = this.responseGoogle.bind(this);
     this.state = {
-      credentials: {
-        username: '',
-        password: '',
-      }
+      email: '',
+      password: '',
     }
   }
 
-  login = (event) => {
-    console.log(this.state.credentials);
-    fetch('/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(this.state.credentials),
-    }).then(res => {
-      console.log(res);
-    }).catch(err => {
-      console.log(err);
-    });
+  async login(event) {
+    console.log("Trying to log in.");
+    event.preventDefault();
+    try {
+      const data = await API.post('/token/obtain/', {
+        username: this.state.email,
+        password: this.state.password,
+      });
+      API.defaults.headers['Authorization'] = "JWT " + data.access;
+      localStorage.setItem('access_token', data.access);
+      localStorage.setItem('refresh_token', data.refresh);
+      return data;
+    } catch (error) {
+      throw error;
+    }
   }
 
   inputChange = (event) => {
-    const credentials = this.state.credentials;
-    credentials[event.target.name] = event.target.value;
-    this.setState({ credentials: credentials });
-  }
-
-  responseGoogle = (response) => {
-    console.log(response);
-    console.log(response.profileObj.email);
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {
@@ -70,21 +64,34 @@ class SignIn extends Component {
                   <label htmlFor="inputEmail" className="sr-only">Email address</label>
                   <input
                     type="email"
+                    name="email"
                     id="inputEmail"
                     className="form-control vertical-margin"
                     placeholder="Email address"
                     required=""
                     autoFocus=""
-                    value={this.state.credentials.username}
+                    value={this.state.email}
                     onChange={this.inputChange} />
                   <label htmlFor="inputPassword" className="sr-only">Password</label>
-                  <input type="password" id="inputPassword" className="form-control vertical-margin" placeholder="Password" required="" />
+                  <input
+                    name="password"
+                    type="password"
+                    id="inputPassword"
+                    className="form-control vertical-margin"
+                    placeholder="Password"
+                    required=""
+                    onChange={this.inputChange} />
                   <Button
                     className="btn btn-lg btn-primary btn-block"
                     type="button"
-                    onClick={() => signIn()}
+                    onClick={this.login}
                   >Sign in</Button>
+                  <p className="mt-5 mb-3 text-muted center">
+                    Dont have an account? &nbsp;
+                    <Link to="/Register" className="link">You can create one here.</Link>
+                  </p>
                   <p className="mt-5 mb-3 text-muted center">© 2017-2018</p>
+
                 </Form>
               </CardBody>
             </Card>

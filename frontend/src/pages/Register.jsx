@@ -27,11 +27,15 @@ class Register extends Component {
                 <Form className="form-signin">
                   <img className="mb-4 center ml-auto mr-auto vertical-margin" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72" />
                   <h1 className="h3 mb-3 font-weight-normal">Please Sign In</h1>
+                  <label htmlFor="inputEmail" className="sr-only">First Name</label>
+                  <input type="email" id="inputEmail" className="form-control vertical-margin" placeholder="First Name" required="" autoFocus="" />
+                  <label htmlFor="inputEmail" className="sr-only">Last Name</label>
+                  <input type="email" id="inputEmail" className="form-control vertical-margin" placeholder="Last Name" required="" autoFocus="" />
                   <label htmlFor="inputEmail" className="sr-only">Email address</label>
                   <input type="email" id="inputEmail" className="form-control vertical-margin" placeholder="Email address" required="" autoFocus="" />
                   <label htmlFor="inputPassword" className="sr-only">Password</label>
                   <input type="password" id="inputPassword" className="form-control vertical-margin" placeholder="Password" required="" />
-                  <Button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</Button>
+                  <Button className="btn btn-lg btn-primary btn-block" type="submit">Register</Button>
                   <p className="mt-5 mb-3 text-muted center">© 2017-2018</p>
                 </Form>
               </CardBody>
