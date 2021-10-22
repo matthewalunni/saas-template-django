@@ -13,12 +13,13 @@ module.exports = {
         publicPath: "/static/frontend/public/",
         filename: 'main.js',  // the same one we import in index.html
     },
+    devtool: "source-map",
     module: {
         // configuration regarding modules
         rules: [
             {
                 // regex test for js and jsx files
-                test: /\.(js|jsx)?$/,
+                test: /\.js|\.jsx$/,
                 // don't look in the node_modules/ folder
                 exclude: /node_modules/,
                 // for matching files, use the babel-loader
@@ -28,5 +29,9 @@ module.exports = {
                 },
             }
         ],
+    },
+    resolve: {
+        // options for resolving module requests
+        extensions: ["*", ".js", ".jsx"],
     },
 };
