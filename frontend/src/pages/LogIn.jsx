@@ -32,14 +32,17 @@ class SignIn extends Component {
     console.log("Trying to log in.");
     event.preventDefault();
     try {
-      const data = await API.post('/token/obtain/', {
+      const response = await API.post('/token/obtain/', {
         username: this.state.email,
         password: this.state.password,
       });
-      API.defaults.headers['Authorization'] = "JWT " + data.access;
-      localStorage.setItem('access_token', data.access);
-      localStorage.setItem('refresh_token', data.refresh);
-      return data;
+      
+      API.defaults.headers['Authorization'] = "JWT " + response.data.access;
+      console.log(response.data);
+      localStorage.setItem('access_token', response.data.access);
+      localStorage.setItem('refresh_token', response.data.refresh);
+      console.log(localStorage.getItem('access_token'), localStorage.getItem('refresh_token'));
+      return response;
     } catch (error) {
       throw error;
     }
@@ -88,7 +91,7 @@ class SignIn extends Component {
                   >Sign in</Button>
                   <p className="mt-5 mb-3 text-muted center">
                     Dont have an account? &nbsp;
-                    <Link to="/Register" className="link">You can create one here.</Link>
+                    <Link to="/register" className="link">You can create one here.</Link>
                   </p>
                   <p className="mt-5 mb-3 text-muted center">© 2017-2018</p>
 
