@@ -11,6 +11,7 @@ import {
     DropdownItem,
 } from 'reactstrap';
 import { Link } from "react-router-dom";
+import LogOutButton from './LogOutButton';
 
 var style = {
     marginBottom: '10px',
@@ -57,6 +58,7 @@ class NavigationBar extends Component {
 
                         </Nav>
                         <Nav className="ml-auto" navbar>
+                            <LogOutButton />
                             <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>
                                     Options
