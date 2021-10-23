@@ -12,6 +12,8 @@ import {
 } from 'reactstrap';
 import { Link } from "react-router-dom";
 import LogOutButton from './LogOutButton';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 var style = {
     marginBottom: '10px',
@@ -22,11 +24,29 @@ class NavigationBar extends Component {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.setIsOpen = this.setIsOpen.bind(this);
+        this.logout = this.logout.bind(this);
         this.state = {
             isOpen: false,
         };
 
     }
+
+
+    async logout() {
+        try {
+            const response = await API.post('/blacklist/', {
+                "refresh_token": localStorage.getItem('refresh_token')
+            });
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('refresh_token');
+            API.defaults.headers['Authorization'] = null;
+            return response;
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
 
     setIsOpen = (isOpen) => {
         this.setState({ isOpen: isOpen });
@@ -41,7 +61,7 @@ class NavigationBar extends Component {
         return (
             <div>
                 <Navbar style={style} color="light" light expand="md">
-                    <Link className="navbar-brand" to="/">Workflow</Link>
+                    <Link className="navbar-brand" to="/">SAAS-Template</Link>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="mr-auto" navbar>
@@ -56,23 +76,30 @@ class NavigationBar extends Component {
                                 <Link className="nav-link" to="/hello">hello</Link>
                             </NavItem>
 
+                            <LogOutButton />
                         </Nav>
                         <Nav className="ml-auto" navbar>
-                            <LogOutButton />
                             <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    Options
+                                <DropdownToggle style={{
+                                    backgroundColor: '#CDE7BE', 
+                                    width: '50px', 
+                                    height: '50px',
+                                    borderRadius: '100px',
+                                    textAlign: 'center',
+                                    alignItems: 'center',
+                                    display: 'flex',
+                                    }} nav>
+                                    <FontAwesomeIcon style={{margin: "auto", color: 'black'}} icon={faSignOutAlt} />
                                 </DropdownToggle>
                                 <DropdownMenu right>
                                     <DropdownItem>
-                                        Option 1
                                     </DropdownItem>
                                     <DropdownItem>
-                                        Option 2
+                                        Account
                                     </DropdownItem>
                                     <DropdownItem divider />
-                                    <DropdownItem>
-                                        Reset
+                                    <DropdownItem onClick={this.logout}>
+                                        Log Out
                                     </DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>

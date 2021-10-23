@@ -29,7 +29,7 @@ function BootstrapCard(children) {
           <ListGroupItem>Unlimited Storage</ListGroupItem>
           <ListGroupItem>Unlimited Users</ListGroupItem>
         </ListGroup>
-        <Button color="primary w-100">Sign Up</Button>
+        <Button color="primary w-100">Buy {children.title}</Button>
       </CardBody>
     </Card>
   );
@@ -58,7 +58,6 @@ class Pricing extends Component {
               </Col>
             </Row>
           </main>
-
           <Footer />
         </Container>
       </div >

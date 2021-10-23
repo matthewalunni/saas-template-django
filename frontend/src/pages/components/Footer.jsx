@@ -37,7 +37,7 @@ export default class Footer extends Component {
                 {/* <div style={phantom} /> */}
                 <div style={style}>
                     {this.state.children}
-                    <p>Your copyright should go here.</p>
+                    <p>Copyright goes here.</p>
                 </div>
             </>
         );
