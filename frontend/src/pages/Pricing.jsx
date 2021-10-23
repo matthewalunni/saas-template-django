@@ -40,7 +40,7 @@ class Pricing extends Component {
     return (
       <div>
         <NavigationBar />
-        <Container>
+        <Container style={{marginBottom: '100px'}}>
           <h1 className="center padded">Pricing Plans</h1>
 
             <main >

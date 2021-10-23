@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import API from "../axiosApi";
+import LogIn from "./LogIn";
 
 class Hello extends Component {
     constructor(props) {
@@ -32,11 +33,17 @@ class Hello extends Component {
     }
 
     render(){
-        return (
-            <div>
-                <p>{this.state.message}</p>
-            </div>
-        )
+        if (this.state.message == "") {
+            return (<LogIn/>);
+        }
+        else {
+            return (
+                <div>
+                    <p>{this.state.message}</p>
+                </div>
+            );
+        }
+
     }
 }
 

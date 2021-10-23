@@ -11,9 +11,9 @@ import {
     DropdownItem,
 } from 'reactstrap';
 import { Link } from "react-router-dom";
-import LogOutButton from './LogOutButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import API from '../../AxiosApi';
 
 var style = {
     marginBottom: '10px',
@@ -75,8 +75,6 @@ class NavigationBar extends Component {
                             <NavItem>
                                 <Link className="nav-link" to="/hello">hello</Link>
                             </NavItem>
-
-                            <LogOutButton />
                         </Nav>
                         <Nav className="ml-auto" navbar>
                             <UncontrolledDropdown nav inNavbar>

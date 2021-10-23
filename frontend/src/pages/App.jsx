@@ -10,9 +10,9 @@ class App extends Component {
     return (
       <>
         <NavigationBar />
-        <Container>
+        <Container style={{marginBottom: '100px'}}>
           <div className="site">
-            <h1 style={{ marginTop: '15px;' }}>Hi.</h1>
+            <h1 style={{ marginTop: '25px' }}>Hi.</h1>
             <h1>My name is Matthew.</h1>
             <br />
             <h2>I'm a full-stack developer. This is my SAAS Template.</h2>
