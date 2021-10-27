@@ -13,6 +13,9 @@ class HelloWorldView(APIView):
     def get(self, request):
         return Response(data={"hello":"world"}, status=status.HTTP_200_OK)
 
+class CheckOutView(APIView):
+    def get(self, request):
+        return Response(data={"hello":"world"}, status=status.HTTP_200_OK)
 
 class CustomUserCreate(APIView):
     permission_classes = (permissions.AllowAny,)

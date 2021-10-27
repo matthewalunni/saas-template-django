@@ -1,30 +1,33 @@
 import React, { Component } from "react";
-import API from "../axiosApi";
+import API from "../AxiosApi";
 import LogIn from "./LogIn";
+import LoggedInNavigation from "./components/LoggedInNavigation";
+import NavigationBar from "./components/NavigationBar";
+import Footer from "./components/Footer";
 
 class Hello extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            message:"",
+            message: "",
         };
 
         this.getMessage = this.getMessage.bind(this)
     }
 
-    async getMessage(){
+    async getMessage() {
         try {
             let response = await API.get("/hello");
             const message = response.data.hello;
-            this.setState({message: message});
+            this.setState({ message: message });
             return message;
-        }catch(error){
+        } catch (error) {
             console.log("Error: ", JSON.stringify(error, null, 4));
             throw error;
         }
     }
 
-    async componentDidMount(){
+    async componentDidMount() {
         // It's not the most straightforward thing to run an async method in componentDidMount
 
         // Version 1 - no async: Console.log will output something undefined.
@@ -32,15 +35,26 @@ class Hello extends Component {
         console.log("messageData1: ", JSON.stringify(messageData1, null, 4));
     }
 
-    render(){
+    render() {
         if (this.state.message == "") {
-            return (<LogIn/>);
+
+            return (
+                <>
+                    <NavigationBar />
+                    <LogIn />
+                </>);
         }
         else {
             return (
-                <div>
-                    <p>{this.state.message}</p>
-                </div>
+                <>
+                    <LoggedInNavigation />
+                    <div>
+                        <h1>Hello, you are logged in!</h1>
+                        <h3>Congratulations!</h3>
+                        <p>{this.state.message}</p>
+                    </div>
+                    <Footer />
+                </>
             );
         }
 

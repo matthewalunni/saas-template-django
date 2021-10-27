@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import Footer from "./components/Footer";
-import SignIn from "./LogIn";
+import LogIn from "./LogIn";
+import NavigationBar from "./components/NavigationBar";
 
 
 class Account extends Component {
   render() {
     return (
       <>
-        <SignIn/> 
+        <NavigationBar />
+        <LogIn/>
         <Footer />
       </>
     );

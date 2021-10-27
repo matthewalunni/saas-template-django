@@ -6,18 +6,18 @@ import {
   Card,
   CardBody,
 } from "reactstrap";
-import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import { Link } from 'react-router-dom';
-import API from '../axiosApi';
+import API from '../AxiosApi';
 
 
 var style = {
   maxWidth: "500px",
   marginTop: "7.5vh",
+  marginBottom: "15vh",
 }
 
-class SignIn extends Component {
+class LogIn extends Component {
   constructor(props) {
     super(props);
     this.login = this.login.bind(this);
@@ -55,13 +55,12 @@ class SignIn extends Component {
   render() {
     return (
       <>
-        <NavigationBar />
         <Container className="h-100">
           <main>
             {this.props.children}
             <Card style={style} className="ml-auto mr-auto center">
               <CardBody className="w-100">
-                <Form className="form-signin">
+                <Form className="form-LogIn">
                   <img className="mb-4 center ml-auto mr-auto vertical-margin" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72" />
                   <h1 className="h3 mb-3 font-weight-normal">Please Sign In</h1>
                   <label htmlFor="inputEmail" className="sr-only">Email address</label>
@@ -106,4 +105,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default LogIn;

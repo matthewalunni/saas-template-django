@@ -19,7 +19,7 @@ var style = {
     marginBottom: '10px',
 }
 
-class NavigationBar extends Component {
+class LoggedInNavigation extends Component {
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
@@ -44,9 +44,6 @@ class NavigationBar extends Component {
         }
         catch (error) {
             console.log(error);
-        }
-        finally {
-            window.location.reload();
         }
     }
 
@@ -73,6 +70,10 @@ class NavigationBar extends Component {
                             </NavItem>
                             <NavItem>
                                 <Link className="nav-link" to="/account">Account</Link>
+                            </NavItem>
+
+                            <NavItem>
+                                <Link className="nav-link" to="/hello">hello</Link>
                             </NavItem>
                         </Nav>
                         <Nav className="ml-auto" navbar>
@@ -108,4 +109,4 @@ class NavigationBar extends Component {
     }
 }
 
-export default NavigationBar;
+export default LoggedInNavigation;

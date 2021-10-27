@@ -8,7 +8,7 @@ import {
 } from "reactstrap";
 import Footer from './components/Footer';
 import NavigationBar from './components/NavigationBar';
-import API from '../axiosApi';
+import API from '../AxiosApi';
 
 var style = {
   maxWidth: "500px",
