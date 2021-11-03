@@ -19,7 +19,7 @@ class App extends Component {
             <h4>Bootstrap/React/JWT/Stripe/Python/Django/Postgresql</h4>
             <br />
             <h6>My template to quick start a SAAS project.</h6>
-            <p>Stop losing time implementing authentication and payment over and over again. Focus on what brings value to your customers</p>
+            <p>Stop losing time implementing authentication and payment over and over again. Focus on what brings value to your customers.</p>
             <h4>Demo</h4>
             <h4>Features</h4>
             <h4>Stripe</h4>
