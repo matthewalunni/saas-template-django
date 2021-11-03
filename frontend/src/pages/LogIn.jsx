@@ -25,23 +25,27 @@ class LogIn extends Component {
     this.state = {
       email: '',
       password: '',
+
     }
   }
 
   async login(event) {
-    console.log("Trying to log in.");
     event.preventDefault();
     try {
       const response = await API.post('/token/obtain/', {
         username: this.state.email,
         password: this.state.password,
       });
-      
+      console.log(response);
+
+      //set token to local storage
       API.defaults.headers['Authorization'] = "JWT " + response.data.access;
-      console.log(response.data);
       localStorage.setItem('access_token', response.data.access);
       localStorage.setItem('refresh_token', response.data.refresh);
-      console.log(localStorage.getItem('access_token'), localStorage.getItem('refresh_token'));
+
+      //if the user is successfully logged in, redirect to the '/hello' route
+      this.props.history.push('/hello');
+
       return response;
     } catch (error) {
       throw error;

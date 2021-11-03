@@ -14,6 +14,13 @@ import {
   Col,
 } from 'reactstrap';
 import Footer from './components/Footer';
+import { Link, useHistory } from 'react-router-dom';
+
+var linkStyle = {
+  color: 'white',
+  textDecoration: 'none'
+}
+
 
 function BootstrapCard(children) {
   return (
@@ -29,39 +36,70 @@ function BootstrapCard(children) {
           <ListGroupItem>Unlimited Storage</ListGroupItem>
           <ListGroupItem>Unlimited Users</ListGroupItem>
         </ListGroup>
-        <Button color="primary w-100">Buy {children.title}</Button>
+        <Button
+          color="primary w-100"
+          onClick={children.onClick}
+
+        >
+          <Link
+            to="/checkout"
+            style={linkStyle}>
+            Buy {children.title}
+          </Link>
+        </Button>
       </CardBody>
     </Card>
   );
 }
 
 class Pricing extends Component {
-  render() {
-    return (
-      <div>
-        <NavigationBar />
-        <Container style={{marginBottom: '100px'}}>
-          <h1 className="center padded">Pricing Plans</h1>
+  constructor(props) {
+    super(props);
+    this.buy = this.buy.bind(this);
+  }
 
+  buy = (title) => {
+    console.log(title);
+    console.log("buy");
+    let path = '/checkout/';
+    let history = useHistory();
+    history.push(path);
+  }
+
+  render() {
+      return (
+        <>
+          <NavigationBar />
+          <Container style={{ marginBottom: '100px' }}>
+            <h1 className="center padded">Pricing Plans</h1>
             <main >
-            {this.props.children}
-            <p className="center">Start building for free, then add a site plan to go live. Account plans unlock additional features.</p>
-            <Row className="pricing-plans center vertical-margined">
-              <Col sm="4">
-                <BootstrapCard title="Free" subtitle="$0/month" />
-              </Col>
-              <Col sm="4">
-                <BootstrapCard title="Pro" subtitle="$9/month" />
-              </Col>
-              <Col sm="4">
-                <BootstrapCard title="Enterprise" subtitle="$49/month" />
-              </Col>
-            </Row>
-          </main>
-          <Footer />
-        </Container>
-      </div >
-    );
+              {this.props.children}
+              <p className="center">Start building for free, then add a site plan to go live. Account plans unlock additional features.</p>
+              <Row className="pricing-plans center vertical-margined">
+                <Col sm="4">
+                  <BootstrapCard
+                    onClick={() => this.buy("Free")}
+                    title="Free"
+                    subtitle="$0/month" />
+                </Col>
+                <Col sm="4">
+                  <BootstrapCard
+                    onClick={() => this.buy("Pro")}
+                    title="Pro"
+                    subtitle="$9/month" />
+                </Col>
+                <Col sm="4">
+                  <BootstrapCard
+                    onClick={() => this.buy("Enterprise")}
+                    title="Enterprise"
+                    subtitle="$49/month" />
+                </Col>
+              </Row>
+            </main>
+            <Footer />
+          </Container>
+        </>
+      );
   }
 }
 

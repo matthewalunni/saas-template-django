@@ -179,3 +179,7 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
 TEMPLATE_DIRS = [
     os.path.join(PROJECT_PATH, 'templates/'),
 ]
+
+STRIPE_PUBLIC_KEY = ""
+STRIPE_SECRET_KEY = ""
+STRIPE_WEBHOOK_SECRET = ""

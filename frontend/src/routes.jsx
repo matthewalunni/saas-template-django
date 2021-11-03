@@ -6,7 +6,7 @@ import Account from './pages/Account';
 import LogIn from './pages/LogIn';
 import Register from './pages/Register';
 import LogOut from './pages/LogOut';
-import Checkout from './pages/Checkout';
+import Checkout from './pages/CheckoutPage';
 import Pricing from './pages/Pricing';
 import Hello from './pages/Hello';
 

@@ -40,6 +40,10 @@ class LoggedInNavigation extends Component {
             localStorage.removeItem('access_token');
             localStorage.removeItem('refresh_token');
             API.defaults.headers['Authorization'] = null;
+
+            //reroute to home page
+            window.location.href = '/';
+
             return response;
         }
         catch (error) {
