@@ -1,3 +1,4 @@
+from django.http.response import JsonResponse
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import status, permissions
 from rest_framework.response import Response
@@ -15,20 +16,21 @@ class HelloWorldView(APIView):
 
 class CheckOutView(APIView):
     def get(self, request):
-        return Response(data={"hello":"world"}, status=status.HTTP_200_OK)
+        return Response(data={"message":"world"}, status=status.HTTP_200_OK)
 
 class CustomUserCreate(APIView):
     permission_classes = (permissions.AllowAny,)
     authentication_classes = ()
 
     def post(self, request, format='json'):
+        print(request.data)
         serializer = CustomUserSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
             if user:
                 json = serializer.data
-                return Response(json, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                return JsonResponse(json, status=status.HTTP_201_CREATED)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LogoutAndBlacklistRefreshTokenForUserView(APIView):

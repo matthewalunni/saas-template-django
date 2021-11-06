@@ -106,16 +106,21 @@ class CheckoutPage extends Component {
     try {
       const response = await API.get('checkout');
       const message = response.data.message;
-      if (message === "logged in") {
+      console.log(response, message);
+      if (message === "world") {
         this.setState({ loggedIn: true });
       }
+
+      return response, message;
     } catch (error) {
+      console.log(error);
+      return error;
     }
   }
 
   // this checks if the user is logged in on page load
-  componentDidMount() {
-    const response = this.setLoggedIn();
+  async componentDidMount() {
+    const response = await this.setLoggedIn();
     console.log(response);
   }
 

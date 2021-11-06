@@ -25,7 +25,7 @@ class LogIn extends Component {
     this.state = {
       email: '',
       password: '',
-
+      error: null,
     }
   }
 
@@ -43,12 +43,12 @@ class LogIn extends Component {
       localStorage.setItem('access_token', response.data.access);
       localStorage.setItem('refresh_token', response.data.refresh);
 
-      //if the user is successfully logged in, redirect to the '/hello' route
-      this.props.history.push('/hello');
+      //if the user is successfully logged in, refresh the page
+      window.location.reload();
 
       return response;
     } catch (error) {
-      throw error;
+      this.setState({error: error.message});
     }
   }
 
@@ -67,6 +67,7 @@ class LogIn extends Component {
                 <Form className="form-LogIn">
                   <img className="mb-4 center ml-auto mr-auto vertical-margin" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72" />
                   <h1 className="h3 mb-3 font-weight-normal">Please Sign In</h1>
+                  <p className="alert">{this.state.error}</p>
                   <label htmlFor="inputEmail" className="sr-only">Email address</label>
                   <input
                     type="email"

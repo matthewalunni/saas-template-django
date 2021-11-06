@@ -62,8 +62,7 @@ class Pricing extends Component {
     console.log(title);
     console.log("buy");
     let path = '/checkout/';
-    let history = useHistory();
-    history.push(path);
+    this.props.history.push(path);
   }
 
   render() {
