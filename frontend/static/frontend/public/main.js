@@ -12833,6 +12833,7 @@ var CheckoutPage = /*#__PURE__*/function (_Component) {
       loggedIn: false
     };
     _this.useEffect = _this.useEffect.bind(_assertThisInitialized(_this));
+    _this.checkout = _this.checkout.bind(_assertThisInitialized(_this));
     return _this;
   } // this method checks with the backend if the user is logged in
 
@@ -12916,6 +12917,48 @@ var CheckoutPage = /*#__PURE__*/function (_Component) {
       return componentDidMount;
     }()
   }, {
+    key: "checkout",
+    value: function () {
+      var _checkout = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(event) {
+        var response;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                event.preventDefault();
+                _context3.prev = 1;
+                console.log("checkout");
+                _context3.next = 5;
+                return _AxiosApi__WEBPACK_IMPORTED_MODULE_3__["default"].post('create-checkout-session/');
+
+              case 5:
+                response = _context3.sent;
+                console.log(response);
+                this.setState({
+                  message: response.data.message
+                });
+                return _context3.abrupt("return", response);
+
+              case 11:
+                _context3.prev = 11;
+                _context3.t0 = _context3["catch"](1);
+                console.log(_context3.t0);
+
+              case 14:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[1, 11]]);
+      }));
+
+      function checkout(_x) {
+        return _checkout.apply(this, arguments);
+      }
+
+      return checkout;
+    }()
+  }, {
     key: "render",
     value: function render() {
       if (this.state.message && this.state.loggedIn) {
@@ -12926,27 +12969,28 @@ var CheckoutPage = /*#__PURE__*/function (_Component) {
         }, message)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], null));
       } else if (this.state.loggedIn) {
         //product display
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_LoggedInNavigation__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
-          style: checkoutStyles.section
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          style: checkoutStyles.product
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-          style: checkoutStyles.img,
-          src: "https://i.imgur.com/EHyR2nP.png",
-          alt: "The cover of Stubborn Attachments"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          style: checkoutStyles.description
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
-          style: checkoutStyles.h3
-        }, "Stubborn Attachments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h5", {
-          style: checkoutStyles.h5
-        }, "$20.00"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-          action: "/api/create-checkout-session/",
-          method: "POST"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_CsrfToken__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          style: checkoutStyles.button,
-          type: "submit"
-        }, "Checkout"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+        return (
+          /*#__PURE__*/
+          //TODO: eventual product component or functional component
+          react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_LoggedInNavigation__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
+            style: checkoutStyles.section
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            style: checkoutStyles.product
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+            style: checkoutStyles.img,
+            src: "https://i.imgur.com/EHyR2nP.png",
+            alt: "The cover of Stubborn Attachments"
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            style: checkoutStyles.description
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+            style: checkoutStyles.h3
+          }, "Stubborn Attachments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h5", {
+            style: checkoutStyles.h5
+          }, "$20.00"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+            style: checkoutStyles.button,
+            onClick: this.checkout
+          }, "Checkout")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], null))
+        );
       } else {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_NavigationBar__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_LogIn__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], null));
       }

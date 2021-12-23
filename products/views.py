@@ -1,14 +1,18 @@
 from django.shortcuts import redirect, render
 import json
+from django.http import HttpResponse
 import stripe
 from django.conf import settings
 from django.http import JsonResponse
 # Create your views here.
-from django.views import View
+from django.views.decorators.csrf import csrf_exempt # new
+from rest_framework.views import APIView
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
-class CreateCheckoutSessionView(View):
+class CreateCheckoutSessionView(APIView):
+
+    @csrf_exempt
     def post(self, request, *args, **kwargs):
         try:
             checkout_session = stripe.checkout.Session.create(
@@ -23,13 +27,13 @@ class CreateCheckoutSessionView(View):
                 'card',
                 ],
                 mode='payment',
-                success_url=YOUR_DOMAIN + '/success/',
-                cancel_url=YOUR_DOMAIN + '/cancel/',
+                success_url='/success/',
+                cancel_url='/cancel/',
             )
         except Exception as e:
-            return str(e)
+            return HttpResponse(e)
 
-        return redirect(checkout_session.url, code=303)
+        return HttpResponse(json.dumps(checkout_session), code=303)
 
     def calculate_order_amount(items):
         # Replace this constant with a calculation of the order's amount

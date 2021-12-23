@@ -99,6 +99,7 @@ class CheckoutPage extends Component {
       loggedIn: false,
     };
     this.useEffect = this.useEffect.bind(this);
+    this.checkout = this.checkout.bind(this);
   }
 
   // this method checks with the backend if the user is logged in
@@ -134,6 +135,20 @@ class CheckoutPage extends Component {
     }
   }
 
+  async checkout(event) {
+    event.preventDefault();
+    try {
+      console.log("checkout");
+      const response = await API.post('create-checkout-session/');
+      console.log(response);
+      this.setState({ message: response.data.message });
+      return response;
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
   render() {
     if (this.state.message && this.state.loggedIn) {
       return (
@@ -149,6 +164,7 @@ class CheckoutPage extends Component {
     else if (this.state.loggedIn) {
       //product display
       return (
+        //TODO: eventual product component or functional component
         <>
           <LoggedInNavigation />
           <section style={checkoutStyles.section}>
@@ -162,12 +178,12 @@ class CheckoutPage extends Component {
                 <h5 style={checkoutStyles.h5}>$20.00</h5>
               </div>
             </div>
-            <form action="/api/create-checkout-session/" method="POST">
-              <CSRFToken />
-              <button style={checkoutStyles.button} type="submit">
+            {/* <form action="/api/create-checkout-session/" method="POST"> */}
+              {/* <CSRFToken /> */}
+              <button style={checkoutStyles.button} onClick={this.checkout}>
                 Checkout
               </button>
-            </form>
+            {/* </form> */}
           </section>
           <Footer />
         </>
