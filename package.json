@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "start": "react-scripts start",
+    "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && webpack --config webpack.config.js",
     "test": "test"
   },
   "author": "",
@@ -14,7 +15,6 @@
     "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@babel/preset-env": "^7.15.8",
     "@babel/preset-react": "^7.14.5",
-    "babel-loader": "^8.2.3",
     "babel-polyfill": "^6.26.0",
     "source-map-loader": "^1.0.0",
     "webpack": "^5.59.1",

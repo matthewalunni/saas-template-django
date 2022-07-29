@@ -7,10 +7,12 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
     @classmethod
     def get_token(cls, user):
+        print(user)
         token = super(MyTokenObtainPairSerializer, cls).get_token(user)
 
         # Add custom claims
         return token
+
 
 class CustomUserSerializer(serializers.ModelSerializer):
     """
@@ -22,16 +24,16 @@ class CustomUserSerializer(serializers.ModelSerializer):
         required=True
     )
     password = serializers.CharField(min_length=8, write_only=True)
-    
 
     class Meta:
         model = CustomUser
-        fields = ('first', 'last', 'email','password')
+        fields = ('first', 'last', 'email', 'password')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)
-        instance = self.Meta.model(**validated_data)  # as long as the fields are the same, we can just use this
+        # as long as the fields are the same, we can just use this
+        instance = self.Meta.model(**validated_data)
         if password is not None:
             instance.set_password(password)
         instance.save()
