@@ -2,7 +2,7 @@
 
 The goal of this project is to provide minimalistic django project template that everyone can use, which _just works_ out of the box and has the basic setup you can expand on. 
 
-![Default Home View](__screenshots/home.png?raw=true "Title")
+![Default Home View](images/home.png?raw=true "Home")
 
 ### Main features
 
