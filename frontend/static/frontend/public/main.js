@@ -13285,7 +13285,8 @@ var LogIn = /*#__PURE__*/function (_Component) {
     key: "login",
     value: function () {
       var _login = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
-        var response;
+        var response, _response$data, access, refresh;
+
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -13300,13 +13301,15 @@ var LogIn = /*#__PURE__*/function (_Component) {
 
               case 4:
                 response = _context.sent;
-                console.log(response); //set token to local storage
+                _response$data = response.data, access = _response$data.access, refresh = _response$data.refresh; //set token to local storage
 
-                _AxiosApi__WEBPACK_IMPORTED_MODULE_2__["default"].defaults.headers.Authorization = "JWT " + response.data.access;
-                localStorage.setItem("access_token", response.data.access);
-                localStorage.setItem("refresh_token", response.data.refresh); //if the user is successfully logged in, refresh the page
+                _AxiosApi__WEBPACK_IMPORTED_MODULE_2__["default"].defaults.headers.Authorization = "JWT " + access;
+                localStorage.setItem("access_token", access);
+                localStorage.setItem("refresh_token", refresh); //if the user is successfully logged in, refresh the page
+                // window.location.reload();
+                // reroute to /hello
 
-                window.location.reload();
+                this.props.history.push("/hello");
                 return _context.abrupt("return", response);
 
               case 13:
@@ -13691,10 +13694,10 @@ var Register = /*#__PURE__*/function (_Component) {
     });
 
     _this.state = {
-      first: '',
-      last: '',
-      email: '',
-      password: '',
+      first: "",
+      last: "",
+      email: "",
+      password: "",
       error: undefined
     };
     _this.inputChange = _this.inputChange.bind(_assertThisInitialized(_this));
@@ -13714,7 +13717,7 @@ var Register = /*#__PURE__*/function (_Component) {
                 event.preventDefault();
                 _context.prev = 1;
                 _context.next = 4;
-                return _AxiosApi__WEBPACK_IMPORTED_MODULE_3__["default"].post('/user/create/', {
+                return _AxiosApi__WEBPACK_IMPORTED_MODULE_3__["default"].post("/user/create/", {
                   first: this.state.first,
                   last: this.state.last,
                   email: this.state.email,
@@ -13724,24 +13727,25 @@ var Register = /*#__PURE__*/function (_Component) {
 
               case 4:
                 response = _context.sent;
-                // route to the hello pages
-                this.props.history.push('/hello');
+                console.log(response); // route to the hello pages
+
+                this.props.history.push("/hello");
                 return _context.abrupt("return", response);
 
-              case 9:
-                _context.prev = 9;
+              case 10:
+                _context.prev = 10;
                 _context.t0 = _context["catch"](1);
                 this.setState({
                   error: _context.t0.toJSON().message
                 });
                 console.log(this.state);
 
-              case 13:
+              case 14:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[1, 9]]);
+        }, _callee, this, [[1, 10]]);
       }));
 
       function register(_x) {

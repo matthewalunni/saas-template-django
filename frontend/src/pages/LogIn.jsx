@@ -27,18 +27,17 @@ class LogIn extends Component {
     event.preventDefault();
     try {
       const response = await API.post("/token/obtain/", {
-        email: this.state.email,
+        username: this.state.email,
         password: this.state.password,
       });
-      console.log(response);
+      const { access, refresh } = response.data;
 
       //set token to local storage
-      API.defaults.headers["Authorization"] = "JWT " + response.data.access;
-      localStorage.setItem("access_token", response.data.access);
-      localStorage.setItem("refresh_token", response.data.refresh);
+      API.defaults.headers["Authorization"] = "JWT " + access;
+      localStorage.setItem("access_token", access);
+      localStorage.setItem("refresh_token", refresh);
 
-      //if the user is successfully logged in, refresh the page
-      window.location.reload();
+      this.props.history.push("/hello");
 
       return response;
     } catch (error) {
